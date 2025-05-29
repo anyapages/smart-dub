@@ -9,6 +9,8 @@ MobiFlow Hub Optimiser is an intelligent platform that identifies optimal locati
 
 ## 📸 Dashboard Preview
 ![MobiFlow Dashboard Screenshot](dashboard.png)
+![Map00](map00.png)
+![Map01](map01.png)
 
 ### 🚀 Key Features
 
@@ -124,6 +126,10 @@ streamlit run dashboard.py
 ### 🔗 Project Links
 - [GitHub Repo](https://github.com/anyapages/smart-dub)
 - [Live Demo](http://anya.works/)
+
+### 📄 License
+MIT License - see [LICENSE](LICENSE) for details
+
 ---
 #### Where data meets sustainability, cities transform 🌱🚲
 *— Anya* 
