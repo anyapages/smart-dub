@@ -125,7 +125,7 @@ streamlit run dashboard.py
 
 ### 🔗 Project Links
 - [GitHub Repo](https://github.com/anyapages/smart-dub)
-- [Live Demo](http://anya.works/)
+- [Live Demo](https://smart-dub-by-anya.streamlit.app)
 
 ### 📄 License
 MIT License - see [LICENSE](LICENSE) for details
