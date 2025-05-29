@@ -70,7 +70,7 @@ pip (Python package manager)
 ```` 
 git clone https://github.com/anyapages/smart-dub.git
 cd smart-dub
-source .venv/binactivate    # Windows: .venv\Scripts\activate
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 streamlit run dashboard.py
 ````

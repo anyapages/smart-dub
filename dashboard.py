@@ -1,3 +1,5 @@
+# pip install streamlit plotly pandas
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -33,12 +35,12 @@ bikes_df = pd.DataFrame(sample_bikes_data)
 recommendations_df = pd.DataFrame(sample_recommendations)
 
 def generate_recommendations():
-    """Simulate recommendation generation with loading"""
-    time.sleep(1)
+    """Simulate recommendation generation"""
+    time.sleep(1)  # Simulate processing time
     return recommendations_df
 
 def create_main_map():
-    """Create interactive map visualization - FIXED VERSION"""
+    """Create interactive map visualisation - FIXED VERSION"""
     fig = go.Figure()
 
     # Calculate utilization rate
@@ -56,10 +58,10 @@ def create_main_map():
             sizemode='diameter',
             sizeref=2,
             colorbar=dict(
-                title="Bike Utilisation Rate",
-                titleside="right",
-                x=1.02,
-                y=0.8,
+                title="Bike Utilisation Rate",  # ✅ Keep the title
+                # ❌ REMOVE: titleside="right"  <- This property doesn't exist
+                x=1.02,      # ✅ Use x positioning instead
+                y=0.8,       # ✅ Use y positioning
                 len=0.6,
                 thickness=15,
                 xanchor="left",
@@ -80,9 +82,10 @@ def create_main_map():
         lon=recommendations_df['lng'],
         mode='markers',
         marker=dict(
-            size=25,
+            size=recommendations_df['score'] * 0.8,
             color='gold',
             symbol='star',
+            sizeref=3,
             opacity=0.9
         ),
         text=recommendations_df['location'],
@@ -91,17 +94,14 @@ def create_main_map():
         name='Recommended Hubs'
     ))
 
-    # Update layout with proper mapbox configuration
+    # Update layout with proper margins
     fig.update_layout(
-        mapbox=dict(
-            style="open-street-map",  # This is crucial for the map to work
-            center=dict(lat=53.3498, lon=-6.2603),
-            zoom=12
-        ),
+        mapbox_style="open-street-map",
+        mapbox_center={"lat": 53.3498, "lon": -6.2603},
+        mapbox_zoom=12,
         height=600,
-        margin=dict(r=120, t=40, l=20, b=20),
-        title="Mobility Hub Recommendations",
-        showlegend=True
+        margin={"r":120,"t":40,"l":20,"b":20},  # More right margin for colorbar
+        title="Dublin Mobility Hub"
     )
 
     return fig
@@ -115,12 +115,11 @@ def create_score_breakdown():
         orientation='h',
         color='score',
         color_continuous_scale='Viridis',
-        title='🏆 Top Recommended Hub Locations'
+        title='🏆 Top Locations'
     )
     fig.update_layout(
         yaxis={'categoryorder': 'total ascending'},
         xaxis_title='Hub Score (0-100)',
-        yaxis_title='Location',
         height=400
     )
     return fig
@@ -144,7 +143,7 @@ def main():
         default=["Bus", "Luas"]
     )
 
-    st.title("🚲 MobiFlow Dublin")
+    st.title("🚲 MobiFlow")
 
     # Loading Indicator
     with st.spinner('Calculating optimal hub locations...'):
@@ -164,7 +163,7 @@ def main():
     with col1:
         st.metric("Top Recommended Location", "Parnell Square", "74/100")
     with col2:
-        st.metric("Estimated CO2 Reduction", "156 tonnes/year", "+24% vs baseline")
+        st.metric("Estimated CO₂ Reduction", "156 tonnes/year", "+24% vs baseline")
     with col3:
         st.metric("Projected Users", "45,000/year", "First 12 months")
 
