@@ -1,5 +1,3 @@
-# pip install streamlit plotly pandas
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -35,13 +33,16 @@ bikes_df = pd.DataFrame(sample_bikes_data)
 recommendations_df = pd.DataFrame(sample_recommendations)
 
 def generate_recommendations():
-    """Simulate recommendation generation"""
-    time.sleep(1)  # Simulate processing time
+    """Simulate recommendation generation with loading"""
+    time.sleep(1)
     return recommendations_df
 
 def create_main_map():
-    """Create interactive map visualisation - FIXED colourbar positioning"""
+    """Create interactive map visualization - FIXED VERSION"""
     fig = go.Figure()
+
+    # Calculate utilization rate
+    bikes_df['utilization_rate'] = bikes_df['bikes'] / bikes_df['capacity']
 
     # Add Dublin Bikes stations with FIXED colorbar
     fig.add_trace(go.Scattermapbox(
@@ -49,26 +50,27 @@ def create_main_map():
         lon=bikes_df['lng'],
         mode='markers',
         marker=dict(
-            size=bikes_df['capacity'] * 1.5,
-            color=bikes_df['bikes']/bikes_df['capacity'],
-            colorscale='RdYlGn_r',
+            size=bikes_df['capacity'] * 1.2,
+            color=bikes_df['utilization_rate'],
+            colorscale='Viridis',
             sizemode='diameter',
             sizeref=2,
             colorbar=dict(
                 title="Bike Utilisation Rate",
                 titleside="right",
-                x=1.02,  # Move colorbar to the right
-                y=0.8,   # Position it higher up
-                len=0.6, # Make it shorter
-                thickness=15,  # Make it thinner
+                x=1.02,
+                y=0.8,
+                len=0.6,
+                thickness=15,
                 xanchor="left",
                 yanchor="top"
             ),
-            opacity=0.8
+            opacity=0.8,
+            showscale=True
         ),
         text=bikes_df['name'],
-        hovertemplate='<b>%{text}</b><br>🚲 Available: %{customdata[0]}<br>📍 Stands: %{customdata[1]}<extra></extra>',
-        customdata=bikes_df[['bikes', 'stands']],
+        hovertemplate='<b>%{text}</b><br>🚲 Available: %{customdata[0]}<br>📍 Stands: %{customdata[1]}<br>Capacity: %{customdata[2]}<extra></extra>',
+        customdata=bikes_df[['bikes', 'stands', 'capacity']],
         name='Dublin Bikes Stations'
     ))
 
@@ -78,10 +80,9 @@ def create_main_map():
         lon=recommendations_df['lng'],
         mode='markers',
         marker=dict(
-            size=recommendations_df['score'] * 0.8,
+            size=25,
             color='gold',
             symbol='star',
-            sizeref=3,
             opacity=0.9
         ),
         text=recommendations_df['location'],
@@ -90,14 +91,17 @@ def create_main_map():
         name='Recommended Hubs'
     ))
 
-    # Update layout with proper margins
+    # Update layout with proper mapbox configuration
     fig.update_layout(
-        mapbox_style="open-street-map",
-        mapbox_center={"lat": 53.3498, "lon": -6.2603},
-        mapbox_zoom=12,
+        mapbox=dict(
+            style="open-street-map",  # This is crucial for the map to work
+            center=dict(lat=53.3498, lon=-6.2603),
+            zoom=12
+        ),
         height=600,
-        margin={"r":120,"t":40,"l":20,"b":20},  # More right margin for colorbar
-        title="Dublin Mobility Hub"
+        margin=dict(r=120, t=40, l=20, b=20),
+        title="Mobility Hub Recommendations",
+        showlegend=True
     )
 
     return fig
@@ -111,7 +115,7 @@ def create_score_breakdown():
         orientation='h',
         color='score',
         color_continuous_scale='Viridis',
-        title='🏆 Top Locations'
+        title='🏆 Top Recommended Hub Locations'
     )
     fig.update_layout(
         yaxis={'categoryorder': 'total ascending'},
@@ -140,7 +144,7 @@ def main():
         default=["Bus", "Luas"]
     )
 
-    st.title("🚲 MobiFlow")
+    st.title("🚲 MobiFlow Dublin")
 
     # Loading Indicator
     with st.spinner('Calculating optimal hub locations...'):
@@ -160,7 +164,7 @@ def main():
     with col1:
         st.metric("Top Recommended Location", "Parnell Square", "74/100")
     with col2:
-        st.metric("Estimated CO₂ Reduction", "156 tonnes/year", "+24% vs baseline")
+        st.metric("Estimated CO2 Reduction", "156 tonnes/year", "+24% vs baseline")
     with col3:
         st.metric("Projected Users", "45,000/year", "First 12 months")
 
