@@ -1,0 +1,12 @@
+station_id,name,latitude,longitude,available_bikes,available_stands,total_capacity,status,last_update,banking,bonus,utilization_rate,availability_score,demand_indicator
+1,Heuston Station,53.3464,-6.2921,5,15,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.25,20,Low
+2,Smithfield,53.3475,-6.2785,2,13,15,OPEN,2025-05-28 13:16:23.251666,True,False,0.13333333333333333,15,Low
+3,Merrion Square East,53.3379,-6.2537,7,13,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.35,20,Low
+4,Trinity College,53.3439,-6.2546,12,13,25,OPEN,2025-05-28 13:16:23.251666,True,False,0.48,25,Low
+5,Dame Street,53.3434,-6.2674,3,17,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.15,20,Low
+6,IFSC,53.3498,-6.2398,8,12,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.4,20,Low
+7,Grand Canal Dock,53.3391,-6.2351,15,10,25,OPEN,2025-05-28 13:16:23.251666,True,False,0.6,25,Medium
+8,St. Stephen's Green,53.3387,-6.2613,6,14,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.3,20,Low
+9,Rathmines,53.325,-6.2642,4,11,15,OPEN,2025-05-28 13:16:23.251666,True,False,0.26666666666666666,15,Low
+10,Parnell Square,53.3527,-6.2648,9,11,20,OPEN,2025-05-28 13:16:23.251666,True,False,0.45,20,Low
+11,Drumcondra,53.3712,-6.2573,7,8,15,OPEN,2025-05-28 13:16:23.251666,True,False,0.4666666666666667,15,Low

@@ -1,0 +1,6 @@
+latitude,longitude,hub_score,transport_score,demand_score,gap_score,accessibility_score,nearest_bus,nearest_luas,bike_demand
+53.3525,-6.26,74.03,30.0,16.99,9.3,12.74,Unknown,Abbey Street,13.591974763254475
+53.335,-6.26,73.18,30.0,13.12,13.21,11.84,Unknown,St. Stephen's Green,10.497870502873962
+53.3375,-6.256,72.69,35.0,15.13,5.39,12.17,Unknown,St. Stephen's Green,12.100391465487268
+53.339999999999996,-6.26,72.23,35.0,14.22,4.28,13.74,Unknown,St. Stephen's Green,11.375215102368255
+53.3425,-6.26,72.11,30.0,13.52,11.82,11.76,Unknown,Trinity,10.81734557294088

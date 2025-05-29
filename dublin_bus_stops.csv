@@ -1,0 +1,12 @@
+stop_id,stop_name,latitude,longitude,routes,route_count,major_hub
+1001,Heuston Station,53.3468,-6.2928,"25,26,67,69",4,True
+1002,Smithfield,53.3478,-6.2792,"37,39,70",3,False
+1003,Trinity College,53.3442,-6.254,"7,8,15,46",4,True
+1004,Merrion Square,53.3382,-6.2534,"7,8,10",3,False
+1005,Dame Street,53.3437,-6.2671,"15,16,49,54",4,True
+1006,IFSC,53.3501,-6.2395,"90,92",2,False
+1007,Grand Canal Dock,53.3394,-6.2348,"1,47,56",3,False
+1008,St. Stephen's Green,53.339,-6.261,"11,14,15,20",4,True
+1009,Rathmines,53.3253,-6.2639,"14,15,83",3,False
+1010,Parnell Square,53.353,-6.2645,"1,7,11,13",4,True
+1011,Drumcondra,53.3715,-6.257,"1,7,11",3,False

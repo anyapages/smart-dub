@@ -1,0 +1,9 @@
+station_name,latitude,longitude,line,is_interchange
+St. Stephen's Green,53.3387,-6.2613,Green,False
+Trinity,53.3447,-6.2589,Green,False
+Westmoreland,53.345,-6.2589,Green,True
+Abbey Street,53.3484,-6.2589,Green,True
+Heuston,53.3467,-6.2929,Red,False
+Museum,53.3474,-6.2867,Red,False
+Smithfield,53.3475,-6.2785,Red,False
+Four Courts,53.3467,-6.2743,Red,False
