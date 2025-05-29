@@ -65,7 +65,6 @@ Based on our analysis of Dublin's mobility ecosystem:
 Python 3.9+
 pip (Python package manager)
 
-**Quick Start**
 ### **Quick Start**
 ```` 
 git clone https://github.com/anyapages/smart-dub.git
