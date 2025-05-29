@@ -2,11 +2,9 @@
 """
 MobiFlow Hub Optimiser - Data Pipeline
 Step 1: Data Collection and Processing for Dublin Mobility Hub Optimisation
-Hackathon Implementation - Dublin Tech Week 2025
 """
 
 import requests
-import pandas as pd
 import pandas as pd
 import numpy as np
 import json
@@ -577,4 +575,4 @@ if __name__ == "__main__":
     bus_data.to_csv('dublin_bus_stops.csv', index=False)
     luas_data.to_csv('dublin_luas_stations.csv', index=False)
 
-    print(f"🎉 Step 1 Complete! Ready for visualisation and optimisation steps.")
+    print(f"🎉 Step 1 Complete! Ready for visualisation and optimisation steps :)")

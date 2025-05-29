@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import time
 
 # Sample data for Dublin Bikes stations
 sample_bikes_data = [
@@ -32,6 +33,11 @@ sample_recommendations = [
 # Convert to DataFrames
 bikes_df = pd.DataFrame(sample_bikes_data)
 recommendations_df = pd.DataFrame(sample_recommendations)
+
+def generate_recommendations():
+    """Simulate recommendation generation"""
+    time.sleep(1)  # Simulate processing time
+    return recommendations_df
 
 def create_main_map():
     """Create interactive map visualisation - FIXED colourbar positioning"""
@@ -66,7 +72,7 @@ def create_main_map():
         name='Dublin Bikes Stations'
     ))
 
-    # Add recommended hubs (NO colorbar conflict)
+    # Add recommended hubs
     fig.add_trace(go.Scattermapbox(
         lat=recommendations_df['lat'],
         lon=recommendations_df['lng'],
@@ -91,7 +97,7 @@ def create_main_map():
         mapbox_zoom=12,
         height=600,
         margin={"r":120,"t":40,"l":20,"b":20},  # More right margin for colorbar
-        title="🚲 Mobility Hub Recommendations"
+        title="Dublin Mobility Hub"
     )
 
     return fig
@@ -105,7 +111,7 @@ def create_score_breakdown():
         orientation='h',
         color='score',
         color_continuous_scale='Viridis',
-        title='🏆 Top Recommended Hub Locations'
+        title='🏆 Top Locations'
     )
     fig.update_layout(
         yaxis={'categoryorder': 'total ascending'},
@@ -119,7 +125,26 @@ def main():
     """Main Streamlit app"""
     st.set_page_config(page_title="MobiFlow Hub Optimiser", layout="wide")
 
-    st.title("MobiFlow Dublin")
+    # Sidebar Controls
+    st.sidebar.subheader("🎯 Methodology")
+    st.sidebar.write("Algorithm considers:")
+    st.sidebar.write("• Transport connectivity (35%)")
+    st.sidebar.write("• Bike demand patterns (25%)")
+    st.sidebar.write("• Infrastructure gaps (20%)")
+    st.sidebar.write("• Accessibility factors (20%)")
+
+    min_score = st.sidebar.slider("Minimum Hub Score", 60, 80, 70)
+    transport_types = st.sidebar.multiselect(
+        "Transport Integration",
+        ["Bus", "Luas", "DART", "Cycling"],
+        default=["Bus", "Luas"]
+    )
+
+    st.title("🚲 MobiFlow")
+
+    # Loading Indicator
+    with st.spinner('Calculating optimal hub locations...'):
+        recommendations = generate_recommendations()
 
     # Map Section
     col1, col2 = st.columns([3, 1])
@@ -135,9 +160,18 @@ def main():
     with col1:
         st.metric("Top Recommended Location", "Parnell Square", "74/100")
     with col2:
-        st.metric("Estimated CO2 Reduction", "156 tonnes/year", "+24% vs baseline")
+        st.metric("Estimated CO₂ Reduction", "156 tonnes/year", "+24% vs baseline")
     with col3:
         st.metric("Projected Users", "45,000/year", "First 12 months")
+
+    # Export Section
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("📊 Download Report"):
+            st.success("Report generation started! (Demo mode)")
+    with col2:
+        if st.button("📍 Export Locations"):
+            st.success("CSV export started! (Demo mode)")
 
 if __name__ == "__main__":
     main()

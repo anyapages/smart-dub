@@ -59,63 +59,55 @@ Based on our analysis of Dublin's mobility ecosystem:
 ### **Prerequisites**
 Python 3.9+
 pip (Python package manager)
-text
 
 ### **Quick Start**
-Clone the repository
+####  Clone the repository
+git clone https://github.com/anyapages/smart-dub.git
+cd smart-dub
 
-git clone https://github.com/anyapages/mobiflow-hub-optimiser
-cd mobiflow-hub-optimiser
-Create virtual environment
-
+####  Create virtual environment
 python -m venv .venv
-source .venv/bin/activate # On Windows: .venv\Scripts\activate
-Install dependencies
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
+####  Install dependencies
 pip install -r requirements.txt
-Run the data pipeline
 
-python app.py
-Launch interactive dashboard
+####  Run the data pipeline
+python hub_optimiser.py
 
-streamlit run mobility_visualizer.py
-text
+####  Launch interactive dashboard
+streamlit run dashboard.py
 
 ### **API Configuration**
 
-Run complete analysis pipeline
+#### Run complete analysis pipeline
+python hub_optimiser.py
 
-python app.py
-Generate specific number of recommendations
+#### Generate specific number of recommendations
+python hub_optimiser.py --num-locations 10
 
-python app.py --num-locations 10
-Export results to CSV
-
-python app.py --export
-text
+#### Export results to CSV
+python hub_optimiser.py --export
 
 ### **Interactive Dashboard**
-Launch Streamlit dashboard
+streamlit run dashboard.py
 
-streamlit run mobility_visualizer.py
+### **Launch Streamlit dashboard**
 Access at: http://localhost:8501
-
-text
 
 ## 📁 Project Structure
 
-mobiflow-hub-optimiser/
-├── app.py # Main data pipeline and analysis
-├── mobility_visualizer.py # Streamlit dashboard
-├── README.md # This documentation
+smart-dub/
+├── hub_obtimiser.py # Main data pipeline and analysis
+├── dashboard.py # Streamlit dashboard
+├── README.md # Project documentation
 ├── requirements.txt # Python dependencies
 ├── data/ # Exported datasets
 │ ├── mobility_hub_recommendations.csv
 │ ├── dublin_bikes_data.csv
 │ └── dublin_bus_stops.csv
 └── visualisations/ # Generated charts
-└── mobility_hub_visualization.png
-text
+└── visualisation.png
 
 ## 🏆 Hackathon Alignment
 
@@ -145,7 +137,7 @@ text
 ### **Phase 2 Development**
 - Real-time demand prediction using machine learning
 - Integration with Dublin City Council planning systems
-- Mobile app for citizen feedback and usage tracking
+- Mobile hub_optimiser for citizen feedback and usage tracking
 - Expansion to Cork, Galway, and other Irish cities
 
 ### **Advanced Features**
@@ -159,8 +151,13 @@ text
 - **Smart Dublin** for open data access
 - **Dublin City Council** for mobility policy context
 - **Transport for Ireland** for public transport data
-- **WorkIQ & AWS** for hackathon support and mentorship
+- **WorkIQ & AWS** for hackathon support 
+
+## 👥 Team & Recognition
+- **Developed by:** Anya (@anyapages)
+- **🏆 Award:** Best Visualisations - Dublin Tech Week 2025
+- **Challenge Track:** Sustainable Mobility & Public Consultation 
 
 ---
-
-*"Predicting cleaner cities, one hub at a time"* 🌱🚲
+#### Where data meets sustainability, cities transform 🌱🚲
+*— Anya* 
